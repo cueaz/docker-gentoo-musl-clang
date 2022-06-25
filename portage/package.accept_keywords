@@ -1,0 +1,13 @@
+#fortify
+~sys-libs/fortify-headers-9999 **
+
+#utilities
+app-text/mandoc                ~amd64
+app-shells/fzf                 ~amd64
+sys-apps/bat                   ~amd64
+dev-vcs/lazygit                ~amd64
+app-shells/starship            ~amd64
+app-editors/micro              ~amd64
+
+#https://dev.gnupg.org/T5255 >1.8.7
+dev-libs/libgcrypt             ~amd64

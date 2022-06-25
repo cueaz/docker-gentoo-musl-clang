@@ -1,0 +1,23 @@
+diff --git a/configure b/configure
+index 06f344f..4c08f7f 100755
+--- a/configure
++++ b/configure
+@@ -26062,18 +26062,6 @@ if test "$cross_compiling" != yes ; then
+ # GNU binutils' ld does not involve permissions which may stop ldconfig.
+ cf_pathlist=`ld --verbose 2>/dev/null | grep SEARCH_DIR | sed -e 's,SEARCH_DIR[("=][("=]*,,g' -e 's/"[)];//gp' | sort -u`
+
+-# The -NX options tell newer versions of Linux ldconfig to not attempt to
+-# update the cache, which makes it run faster.
+-test -z "$cf_pathlist" && \
+-	cf_pathlist=`ldconfig -NX -v 2>/dev/null | sed -e '/^[ 	]/d' -e 's/:$//' | sort -u`
+-
+-test -z "$cf_pathlist" &&
+-	cf_pathlist=`ldconfig -v 2>/dev/null | sed -n -e '/^[ 	]/d' -e 's/:$//p' | sort -u`
+-
+-# This works with OpenBSD 6.5, which lists only filenames
+-test -z "$cf_pathlist" &&
+-	cf_pathlist=`ldconfig -v 2>/dev/null | sed -n -e 's,^Adding \(.*\)/.*$,\1,p' | sort -u`
+-
+ if test -z "$cf_pathlist"
+ then
+ 	# dyld default path with MacOS

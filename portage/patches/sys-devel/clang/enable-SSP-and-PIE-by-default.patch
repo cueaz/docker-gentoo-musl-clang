@@ -1,0 +1,37 @@
+diff --git a/clang/lib/Driver/ToolChains/Linux.cpp b/clang/lib/Driver/ToolChains/Linux.cpp
+index 180350476c3..119f32ceec6 100644
+--- a/clang/lib/Driver/ToolChains/Linux.cpp
++++ b/clang/lib/Driver/ToolChains/Linux.cpp
+@@ -819,8 +819,18 @@ void Linux::AddIAMCUIncludeArgs(const ArgList &DriverArgs,
+ }
+
+ bool Linux::isPIEDefault() const {
+-  return (getTriple().isAndroid() && !getTriple().isAndroidVersionLT(16)) ||
+-          getTriple().isMusl() || getSanitizerArgs().requiresPIE();
++  const bool IsMips = getTriple().isMIPS();
++  const bool IsAndroid = getTriple().isAndroid();
++
++  if (IsMips || IsAndroid)
++    return (getTriple().isAndroid() && !getTriple().isAndroidVersionLT(16)) ||
++            getTriple().isMusl() || getSanitizerArgs().requiresPIE();
++
++  return true;
++}
++
++unsigned Linux::GetDefaultStackProtectorLevel(bool KernelOrKext) const {
++  return 2;
+ }
+
+ bool Linux::isNoExecStackDefault() const {
+diff --git a/clang/lib/Driver/ToolChains/Linux.h b/clang/lib/Driver/ToolChains/Linux.h
+index 6b16b0e6499..d0024110aef 100644
+--- a/clang/lib/Driver/ToolChains/Linux.h
++++ b/clang/lib/Driver/ToolChains/Linux.h
+@@ -39,6 +39,7 @@ public:
+   bool isPIEDefault() const override;
+   bool isNoExecStackDefault() const override;
+   bool IsMathErrnoDefault() const override;
++  unsigned GetDefaultStackProtectorLevel(bool KernelOrKext) const override;
+   SanitizerMask getSupportedSanitizers() const override;
+   void addProfileRTLibs(const llvm::opt::ArgList &Args,
+                         llvm::opt::ArgStringList &CmdArgs) const override;

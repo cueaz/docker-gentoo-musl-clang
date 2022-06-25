@@ -1,0 +1,20 @@
+diff --git a/include/stdio.h b/include/stdio.h
+index a965184..c229b6b 100644
+--- a/include/stdio.h
++++ b/include/stdio.h
+@@ -92,6 +92,7 @@ _FORTIFY_FN(vsprintf) int vsprintf(char *__s, const char *__f, __builtin_va_list
+ 	return __r;
+ }
+
++#ifndef __clang__
+ _FORTIFY_FN(snprintf) int snprintf(char *__s, size_t __n, const char *__f, ...)
+ {
+ 	size_t __b = __builtin_object_size(__s, 0);
+@@ -115,6 +116,7 @@ _FORTIFY_FN(sprintf) int sprintf(char *__s, const char *__f, ...)
+ 	}
+ 	return __r;
+ }
++#endif
+
+ #ifdef __cplusplus
+ }

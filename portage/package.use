@@ -1,0 +1,42 @@
+*/*                          -berkdb -gdbm -perl -cxx -python -lua -doc -nls -xattr -pam
+*/*                          CPU_FLAGS_X86: aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3
+*/*                          LINGUAS: -*
+*/*                          L10N: -*
+*/*                          LLVM_TARGETS: -*
+
+#clang
+sys-devel/clang	             default-libcxx default-compiler-rt default-lld
+
+#ffmpeg
+media-video/ffmpeg           x264 x265
+
+#perl
+dev-lang/perl                minimal
+dev-perl/*                   minimal
+
+#mandoc
+app-text/mandoc              system-man
+
+#fish
+dev-libs/libpcre2            pcre32
+
+#lldb
+sys-devel/clang              xml
+
+#cleanup
+sys-devel/gcc-config         -native-symlinks -cc-wrappers
+sys-devel/binutils-config    -native-symlinks
+
+#musl https://bugs.gentoo.org/753935
+sys-devel/clang-runtime      -sanitize
+
+#perl
+sys-devel/clang              -static-analyzer
+
+#micro
+app-text/editorconfig-core-c cli
+
+#cleanup
+app-arch/libarchive          -e2fsprogs
+sys-apps/debianutils         -installkernel
+sys-apps/util-linux          -cramfs -logger

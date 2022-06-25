@@ -1,0 +1,12 @@
+diff --git a/clang/lib/Driver/ToolChains/Linux.cpp b/clang/lib/Driver/ToolChains/Linux.cpp
+index 9663a7390..b36c535c7 100644
+--- a/clang/lib/Driver/ToolChains/Linux.cpp
++++ b/clang/lib/Driver/ToolChains/Linux.cpp
+@@ -769,6 +769,7 @@ void Linux::AddClangSystemIncludeArgs(const ArgList &DriverArgs,
+   // add even when Clang is acting as-if it were a system compiler.
+   addExternCSystemInclude(DriverArgs, CC1Args, SysRoot + "/include");
+
++  addExternCSystemInclude(DriverArgs, CC1Args, SysRoot + "/usr/include/fortify");
+   addExternCSystemInclude(DriverArgs, CC1Args, SysRoot + "/usr/include");
+
+   if (!DriverArgs.hasArg(options::OPT_nobuiltininc) && getTriple().isMusl())

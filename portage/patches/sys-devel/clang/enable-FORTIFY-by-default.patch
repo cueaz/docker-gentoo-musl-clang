@@ -1,0 +1,15 @@
+ diff --git a/clang/lib/Frontend/InitPreprocessor.cpp b/clang/lib/Frontend/InitPreprocessor.cpp
+index c64a912ce..09e3ebcbb 100644
+--- a/clang/lib/Frontend/InitPreprocessor.cpp
++++ b/clang/lib/Frontend/InitPreprocessor.cpp
+@@ -775,8 +775,10 @@ static void InitializePredefinedMacros(const TargetInfo &TI,
+     }
+   }
+
+-  if (LangOpts.Optimize)
++  if (LangOpts.Optimize) {
+     Builder.defineMacro("__OPTIMIZE__");
++    Builder.defineMacro("_FORTIFY_SOURCE", "2");
++  }
+   if (LangOpts.OptimizeSize)
+     Builder.defineMacro("__OPTIMIZE_SIZE__");

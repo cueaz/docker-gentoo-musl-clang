@@ -1,0 +1,3 @@
+#cleanup
+sys-devel/gcc-config      -native-symlinks -cc-wrappers
+sys-devel/binutils-config -native-symlinks

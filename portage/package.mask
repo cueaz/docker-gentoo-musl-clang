@@ -1,0 +1,2 @@
+sys-libs/libunwind
+dev-lang/rust

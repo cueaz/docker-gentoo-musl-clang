@@ -1,0 +1,6 @@
+#lazygit
+sys-libs/glibc-2.28
+
+#micro
+x11-misc/xclip-0.13
+x11-misc/xsel-1.2.0
