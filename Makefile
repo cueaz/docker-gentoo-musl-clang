@@ -1,4 +1,4 @@
-NAME = jaeuk
+NAME = user
 PORT = 12222
 WORK = $(HOME)
 
