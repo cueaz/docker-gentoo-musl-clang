@@ -3,7 +3,7 @@ FROM gentoo/stage3:musl-vanilla
 
 ARG BUID=1000
 ARG BGID=1000
-ARG BUSER=jaeuk
+ARG BUSER=user
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -110,7 +110,6 @@ RUN find ~ -type f -exec chmod 644 -- {} + && \
     \
     echo "command -v fish &> /dev/null && [[ \$(ps --no-header --pid=\$PPID --format=cmd) != 'fish' ]] && exec fish" >> ~/.bashrc && \
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher PatrickF1/fzf.fish' && \
-    git clone --depth 1 https://github.com/10sr/editorconfig-micro ~/.config/micro/plug/editorconfig && \
     mkdir ~/work && \
     \
     rm -rf /tmp/*
@@ -124,9 +123,6 @@ ARG BUSER
 ENV MYUID=$BUID
 ENV MYGID=$BGID
 ENV MYUSER=$BUSER
-
-ENV NVIDIA_VISIBLE_DEVICES=all
-ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 
 COPY --from=0 / /
 
