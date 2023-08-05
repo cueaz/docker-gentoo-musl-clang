@@ -1,4 +1,4 @@
-# Building Pure Clang-only Gentoo Image
+# Building Pure Clang-only Gentoo Image (+ LTO)
 
 This was just an experiment I did about 2 years ago. It might not work today.
 
